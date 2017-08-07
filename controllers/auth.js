@@ -41,8 +41,15 @@ module.exports = (dataLoader) => {
 
   // Retrieve current user
   authController.get('/me', onlyLoggedIn, (req, res) => {
-    // TODO: this is up to you to implement :)
-    res.status(500).json({ error: 'not implemented' });
+    dataLoader.getUserFromSession(req.sessionToken)
+      .then((user) => {
+        if (user) {
+           delete user.password;
+          return user;
+        }
+      })
+      .then(data => res.json(data))
+      .catch(err => res.status(400).json(err));
   });
 
   return authController;

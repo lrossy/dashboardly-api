@@ -4,6 +4,7 @@ const mysql = require('promise-mysql');
 // Express middleware
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+
 const checkLoginToken = require('./lib/check-login-token.js');
 
 // Data loader
@@ -28,6 +29,20 @@ const dataLoader = new DashboardlyDataLoader(connection);
 // Express initialization
 const app = express();
 app.use(morgan('dev'));
+
+// var corsOptions = {
+//   origin: 'http://localhost',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
+//
+// app.use(cors(corsOptions));
+
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(bodyParser.json());
 app.use(checkLoginToken(dataLoader));
 
