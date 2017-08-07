@@ -35,3 +35,7 @@ CREATE TABLE bookmarks (
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+
+ALTER TABLE `dashboardly`.`boards` ADD KEY `owner_id` (`ownerId`);
+ALTER TABLE `dashboardly`.`bookmarks` ADD KEY `board_id` (`boardId`);

@@ -17,7 +17,9 @@ const bookmarksController = require('./controllers/bookmarks.js');
 
 // Database / data loader initialization
 const connection = mysql.createPool({
+  host: '192.168.2.32',
   user: 'root',
+  password: 'l12321l',
   database: 'dashboardly'
 });
 const dataLoader = new DashboardlyDataLoader(connection);
