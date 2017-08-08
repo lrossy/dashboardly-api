@@ -18,8 +18,16 @@ module.exports = (dataLoader) => {
 
   // Retrieve a single board
   boardsController.get('/:id', (req, res) => {
+    console.log('req.user', req.user);
+
     dataLoader.getSingleBoard(req.params.id)
-    .then(data => res.json(data))
+    .then(data => {
+      // console.log(data,req.user)
+      // if(req.user.users_id === data.ownerId){
+      //   data.owner = true;
+      // }
+      res.json(data);
+    })
     .catch(err => res.status(400).json(err));
   });
 
