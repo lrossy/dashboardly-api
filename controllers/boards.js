@@ -18,7 +18,7 @@ module.exports = (dataLoader) => {
 
   // Retrieve a single board
   boardsController.get('/:id', (req, res) => {
-    console.log('req.user', req.user);
+    // console.log('req.user', req.user);
 
     dataLoader.getSingleBoard(req.params.id)
     .then(data => {
@@ -34,7 +34,7 @@ module.exports = (dataLoader) => {
 
   // Create a new board
   boardsController.post('/', onlyLoggedIn, (req, res) => {
-    console.log('req.user', req.user);
+    // console.log('req.user', req.user);
     dataLoader.createBoard({
       ownerId: req.user.users_id,
       title: req.body.title,
