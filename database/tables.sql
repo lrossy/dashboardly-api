@@ -39,3 +39,4 @@ CREATE TABLE bookmarks (
 
 ALTER TABLE `dashboardly`.`boards` ADD KEY `owner_id` (`ownerId`);
 ALTER TABLE `dashboardly`.`bookmarks` ADD KEY `board_id` (`boardId`);
+ALTER TABLE `dashboardly`.`bookmarks` ADD COLUMN `description` VARCHAR(80) NULL AFTER `updatedAt`;

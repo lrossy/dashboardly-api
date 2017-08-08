@@ -81,12 +81,14 @@ module.exports = (dataLoader) => {
 
   // Create a new bookmark under a board
   boardsController.post('/:id/bookmarks', onlyLoggedIn, (req, res) => {
+
     dataLoader.boardBelongsToUser(req.params.id, req.user.users_id)
       .then(() => {
         return dataLoader.createBookmark({
           boardId: req.params.id,
           title: req.body.title,
-          url: req.body.url
+          url: req.body.url,
+          description: req.body.description
         });
       })
       .then(data => res.status(201).json(data))
